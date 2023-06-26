@@ -50,7 +50,7 @@ namespace TheRideYouRent
                 SqlConnection con = new SqlConnection("Data Source=lab000000\\SQLEXPRESS;Integrated Security=True");
                 SqlCommand cmd = new SqlCommand(@"INSERT INTO [dbo].[ST10091209_Returned] ([CarNo], [InspectorNo], [DriverNo], [ReturnDate], [elapsedDate], [fine])
             VALUES
-            ('" + txtCarNo.Text + "', '" + txtInspectorNo.Text + "','" + txtDriverID.Text + "','" + txtReturnDate.Text + "', '" + txtElapsedDays.Text + "', '" + txtFine.Text + "')", con);
+            ('" + txtCarNo.Text + "', '" + txtInspectorNo.Text + "','" + txtDriverID.Text + "','" + calReturn.SelectedDate + "', '" + txtElapsedDays.Text + "', '" + txtFine.Text + "')", con);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -87,8 +87,7 @@ namespace TheRideYouRent
                     LabelReturn.Visible = true;
                     calReturn.Visible = true;
 
-                   LabelReturnDate.Visible = false;
-                    txtReturnDate.Visible = false;
+
                     LabelFine.Visible = false;
                     txtFine.Visible = false;
                     LabelElapsedDays.Visible = false;
@@ -114,8 +113,7 @@ namespace TheRideYouRent
                     LabelReturn.Visible = false;
                     calReturn.Visible = false;
 
-                    LabelReturnDate.Visible = false;
-                    txtReturnDate.Visible = false;
+                  
                     LabelFine.Visible = true;
                     txtFine.Visible = true;
                     LabelElapsedDays.Visible = true;

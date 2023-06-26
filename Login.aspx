@@ -8,8 +8,10 @@
 </head>
 <body>
          <form id="form2" runat="server" style=" text-align: center">
+             
              <asp:Label ID="lblHeading" runat="server" Text="The Ride You Rent"></asp:Label >
         <p id="lblUsername" style="text-align: center">
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionString.ProviderName %>" SelectCommand="SELECT * FROM [Login_ST10181140]"></asp:SqlDataSource>
             Username:
             <asp:TextBox ID="txtUsername" runat="server" Width="189px"></asp:TextBox>
         </p>
@@ -19,8 +21,11 @@
         </p>
         <p style="text-align: center">
             <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click1" />
+            <asp:Button ID="btnExit" runat="server" Text="Exit" OnClick="btnExit_Click" />
         </p>
         <p style="text-align: center">
     </form>
+         <p style="text-align: center">
+             s</p>
 </body>
 </html>

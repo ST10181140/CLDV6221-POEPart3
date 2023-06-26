@@ -15,7 +15,11 @@
             <asp:SqlDataSource ID="SqlDataSourceReturn" runat="server" ConnectionString="<%$ ConnectionStrings:RideYouRent_ST10181140ConnectionString %>" SelectCommand="SELECT * FROM [Return_ST10181140]"></asp:SqlDataSource>
             
             <asp:Label ID="LabelSelectView" runat="server" Text="Select a table to view"></asp:Label>
-            <asp:DropDownList ID="DropDownSelectView" runat="server" OnSelectedIndexChanged="DropDownSelectView_SelectedIndexChanged"></asp:DropDownList>
+            <asp:DropDownList ID="DropDownSelectView" runat="server" OnSelectedIndexChanged="DropDownSelectView_SelectedIndexChanged" AutoPostBack="True">
+             <asp:ListItem Text="Select" Value="0"></asp:ListItem>
+                <asp:ListItem Text="Rentals" Value="1"></asp:ListItem>
+                <asp:ListItem Text="Returns" Value="2"></asp:ListItem>
+                </asp:DropDownList>
             <br />
             <asp:GridView ID="GridViewRental" runat="server" AutoGenerateColumns="False" DataKeyNames="CarNo,InspectorNo,DriverID" DataSourceID="SqlDataSourceRental">
                 <Columns>
@@ -41,7 +45,12 @@
             <br />
             <asp:Label ID="LabelSelectAdd" runat="server" Text="Select a table to add to."></asp:Label>
 
-            <asp:DropDownList ID="DropDownSelectAdd" runat="server" OnSelectedIndexChanged="DropDownSelectAdd_SelectedIndexChanged"></asp:DropDownList>
+            <asp:DropDownList ID="DropDownSelectAdd" runat="server" OnSelectedIndexChanged="DropDownSelectAdd_SelectedIndexChanged" AutoPostBack="True"> 
+  <asp:ListItem Text="Select" Value="0"> </asp:ListItem>
+            <asp:ListItem Text="Rentals" Value="1"></asp:ListItem>
+                <asp:ListItem Text="Returns" Value="2"></asp:ListItem>
+            </asp:DropDownList>
+       
             <br />
             <asp:Label ID="LabelCarNo" runat="server" Text="Car No:"></asp:Label>
             <asp:TextBox ID="txtCarNo" runat="server"></asp:TextBox>
@@ -54,9 +63,6 @@
 
             <asp:Label ID="LabelRentalFee" runat="server" Text="Rental Fee:"></asp:Label>
             <asp:TextBox ID="txtRentalFee" runat="server"></asp:TextBox>
-
-            <asp:Label ID="LabelReturnDate" runat="server" Text="Return Date:"></asp:Label>
-            <asp:TextBox ID="txtReturnDate" runat="server"></asp:TextBox>
 
             <asp:Label ID="LabelElapsedDays" runat="server" Text="Elapsed Days:"></asp:Label>
             <asp:TextBox ID="txtElapsedDays" runat="server"></asp:TextBox>
