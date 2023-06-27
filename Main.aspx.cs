@@ -48,5 +48,10 @@ namespace TheRideYouRent
         {
             Response.Redirect("Login.aspx");
         }
+
+        protected void sqlDataSourceRentals_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
+        {
+
+        }
     }
 }

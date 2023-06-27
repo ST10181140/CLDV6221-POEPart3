@@ -20,7 +20,7 @@ namespace TheRideYouRent
         protected void btnLogin_Click1(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection("Data Source=lab000000\\SQLEXPRESS;Integrated Security=True");
-            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT (*) FROM Login_ST10181140 WHERE username ='" + txtUsername.Text + "'AND password ='" + txtPassword + "'", con);
+            SqlDataAdapter sda = new SqlDataAdapter("SELECT COUNT (*) FROM Login_ST10181140 WHERE username ='" + txtUsername.Text + "'AND password ='" + txtPassword.Text + "'", con);
             DataTable dtable = new DataTable();
             sda.Fill(dtable);
             if (dtable.Rows[0][0].ToString() == "1")

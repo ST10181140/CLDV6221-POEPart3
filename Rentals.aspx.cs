@@ -35,7 +35,7 @@ namespace TheRideYouRent
                 SqlConnection con = new SqlConnection("Data Source=lab000000\\SQLEXPRESS;Initial Catalog=RideYouRent_ST10181140;Integrated Security=True");
                 SqlCommand cmd = new SqlCommand(@"INSERT INTO [dbo].[Rental_ST10181140] ([CarNo], [InspectorNo], [DriverID], [StartDate], [EndDate], [RentalFee])
             VALUES
-            ('" + txtCarNo.Text + "', '" + txtInspectorNo.Text + "','" + txtDriverID.Text + "','" + txtRentalFee.Text + "', '" + calStart.SelectedDate + "', '" + calEnd.SelectedDate + "')", con);
+            ('" + txtCarNo.Text + "', '" + txtInspectorNo.Text + "','" + txtDriverID.Text + "', '" + calStart.SelectedDate + "', '" + calEnd.SelectedDate + "', '" + txtRentalFee.Text + "')", con);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -47,14 +47,17 @@ namespace TheRideYouRent
             }
             else
             {
+                int fineAmount = Convert.ToInt32(txtElapsedDays.Text) * 500;
+
                 SqlConnection con = new SqlConnection("Data Source=lab000000\\SQLEXPRESS;Integrated Security=True");
-                SqlCommand cmd = new SqlCommand(@"INSERT INTO [dbo].[ST10091209_Returned] ([CarNo], [InspectorNo], [DriverNo], [ReturnDate], [elapsedDate], [fine])
+                SqlCommand cmd = new SqlCommand(@"INSERT INTO [dbo].[Return_ST10181140] ([CarNo], [InspectorNo], [DriverID], [ReturnDate], [elapsedDate], [FineAmount])
             VALUES
-            ('" + txtCarNo.Text + "', '" + txtInspectorNo.Text + "','" + txtDriverID.Text + "','" + calReturn.SelectedDate + "', '" + txtElapsedDays.Text + "', '" + txtFine.Text + "')", con);
+            ('" + txtCarNo.Text + "', '" + txtInspectorNo.Text + "','" + txtDriverID.Text + "','" + calReturn.SelectedDate + "', '" + txtElapsedDays.Text + "', '" + fineAmount + "')", con);
 
                 con.Open();
                 cmd.ExecuteNonQuery();
-                Response.Write("The Data has been inserted succesfully");
+                Response.Write("The Data has been inserted succesfully <br />");
+                Response.Write("The fine amount is: " + fineAmount);
                 con.Close();
 
                 GridViewReturn.DataBind();
@@ -72,6 +75,9 @@ namespace TheRideYouRent
             switch (add)
             {
                 case "1":
+                    LabelElapsedDays.Visible = false;
+                    txtElapsedDays.Visible = false;
+                    btnCreateRentalReturn.Visible = true;
                     LabelCarNo.Visible = true;
                     txtCarNo.Visible = true;
                     LabelInspectorNo.Visible = true;
@@ -84,20 +90,14 @@ namespace TheRideYouRent
                     calStart.Visible = true;
                     LabelEndDate.Visible = true;
                     calEnd.Visible = true;
-                    LabelReturn.Visible = true;
-                    calReturn.Visible = true;
-
-
-                    LabelFine.Visible = false;
-                    txtFine.Visible = false;
-                    LabelElapsedDays.Visible = false;
-                    txtElapsedDays.Visible = false;
-
-                    btnCreateRentalReturn.Visible = true;
+                    LabelReturn.Visible = false;
+                    calReturn.Visible = false;
 
                     break;
 
                 case "2":
+                    LabelElapsedDays.Visible = true;
+                    txtElapsedDays.Visible = true;
                     LabelCarNo.Visible = true;
                     txtCarNo.Visible = true;
                     LabelInspectorNo.Visible = true;
@@ -110,15 +110,8 @@ namespace TheRideYouRent
                     calStart.Visible = false;
                     LabelEndDate.Visible = false;
                     calEnd.Visible = false;
-                    LabelReturn.Visible = false;
-                    calReturn.Visible = false;
-
-                  
-                    LabelFine.Visible = true;
-                    txtFine.Visible = true;
-                    LabelElapsedDays.Visible = true;
-                    txtElapsedDays.Visible = true;
-
+                    LabelReturn.Visible = true;
+                    calReturn.Visible = true;
                     btnCreateRentalReturn.Visible = true;
 
                     break;
@@ -132,8 +125,8 @@ namespace TheRideYouRent
             switch (selectItem)
             {
                 case "1":
-                    GridViewRental.Visible = true;
                     GridViewReturn.Visible = false;
+                    GridViewRental.Visible = true;
                     break;
 
                 case "2":
@@ -142,6 +135,7 @@ namespace TheRideYouRent
                     break;
             }
         }
+
     }
     }
 
